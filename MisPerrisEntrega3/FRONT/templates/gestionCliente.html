@@ -1,0 +1,37 @@
+{% extends "maqueta.html" %}
+{% load static from staticfiles %}
+
+{% block nav %}
+{% if user.is_authenticated %}
+
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'gestionUsuario' %}">Contactanos</a>
+    <a href="{% url 'salir' %}">Cerrar Sesion</a>
+</nav> 
+{% else %}
+
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'listarMascotasDisponible' %}">Ver Mascotas</a> 
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+
+
+{% block formulario %}
+<h2>Registro de usuario</h2>
+<form class="formulario" method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="agregar" type="submit" value="Registrarse">
+</form>    
+
+{% endblock %}
+

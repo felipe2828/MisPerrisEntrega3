@@ -1,0 +1,168 @@
+{% extends "maqueta.html" %}
+{% load static from staticfiles %}
+
+<!--BLOQUES NAV USUARIO NORMAL Y ADMIN-->
+{% block bienvenido_admin  %}
+{% if user.is_authenticated and user.is_superuser %}
+<h2>Bienvenido {{user.username}}</h2>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="{% url 'gestionMascota' %}">Gestionar Mascotas</a> 
+    <a href="{% url 'salir' %}">Cerrar Sesion</a>
+</nav> 
+{% else %}
+<div>
+    <h1></h1>
+</div>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="{% url 'gestionMascota' %}">Gestionar Mascotas</a>
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+
+{% block bienvenido_user  %}
+{% if user.is_authenticated  %}
+<h2>Bienvenido {{user.username}}</h2>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'listarMascotasDisponible' %}">Ver Mascotas</a> 
+    <a href="{% url 'salir' %}">Cerrar Sesion</a>
+</nav> 
+{% else %}
+<div>
+    <h1></h1>
+</div>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'listarMascotasDisponible' %}">Mascotas</a>
+    <a href="{% url 'gestionUsuario' %}">Contactanos</a> 
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+<!-- BLOQUES CUERPO PAGINA-->
+
+{% block fotoperro %}
+<div class="fotoperro">
+        <img src="{% static 'img/perro.png' %}" width="100%" alt="">
+</div>
+{% endblock %}
+
+{% block info %}
+<div class="info">
+    <div class="texto1">
+        <h3>+56 9 98765431</h3>
+    </div>
+
+    <div class="texto2">
+        <h3>Rescate y adopción de perros callejeros</h3>
+    </div>
+
+    <div class="texto3">
+        <a href="www.gmail.com"><img src="{% static 'img/1.png' %}" width="4%"> </a>
+        <a href="www.facebook.com"> <img src="{% static 'img/2.png' %}" width="4%"> </a>
+        <a href="www.instagram.com"> <img src="{% static 'img/3.png' %}" width="4%"> </a>
+        <a href="www.hotmail.com"> <img src="{% static 'img/4.png' %}" width="6%"> </a>
+    </div>
+</div>
+{% endblock %}
+
+
+<div id="carrusel">
+    <div>
+        <img src="img/adoptados/Tom.jpg">
+        <p><b>"Estamos felices de tener a Tom en casa. Es un super fiel compañero"</b></p>
+    </div>
+    <div>
+        <img src="img/adoptados/Duque.jpg">
+        <p><b>"Estamos felices de tener a Duque en casa. Es un super fiel compañero"</b></p>
+    </div>
+    <div>
+        <img src="img/adoptados/Apolo.jpg">
+        <p><b>"Estamos felices de tener a Apolo en casa. Es un super fiel compañero"</b></p>
+    </div>
+</div>
+<script src="js/codigo.js"></script>
+
+
+{% block cajainfo %}
+<div class="cajainfo">
+    <div class="columna1">
+        <h1>RESCATE</h1>
+        
+        <h3>ETAPA UNO</h3>
+
+        <br></br>
+
+        <div class="hr1">
+            <hr color=black width=50px size=3 />
+        </div>
+
+        <br></br>
+        <p>Rescatamos perros en situación de peligro y/o abandono. Los habilitamos y los</p>
+        <p>preparamos para buscarles un hogar.</p>
+
+        <br></br>
+
+        <div>
+            <img src="{% static 'img/rescate.jpg' %}" width="50%" >
+        </div>
+    </div>
+ 
+
+
+
+    <div class="columna2">
+        
+        <div>
+            <img src="{% static 'img/crowfunding.jpg' %}" width="40%">
+        </div>
+        <h1>CROWDFUNDING</h1>
+        
+        <h3>FINANCIAMIENTO</h3>
+        <br>
+        <div class="hr1">
+            <hr color=black width=50px size=3 />
+        </div>
+        <br>
+        <p>Sigue nuestras redes sociales para informate acerca de las diversas campañas y</p>
+        <p>actividades que realizamos para obtener financiamiento para seguir ayudando.</p>
+
+        <br>
+
+        <input type="submit" value="CAMPAÑAS" />
+    </div>
+</div>
+{% endblock %}
+
+{% block collage %}
+<div class="collage">
+
+    <div class="caja">
+        <img src="{% static 'img/rescatados/Oso_tn.jpg' %}" alt="Nueve">
+        <img src="{% static 'img/rescatados/Maya_tn.jpg' %}" alt="Nueve">
+        <img src="{% static 'img/rescatados/Wifi_tn.jpg' %}" alt="Nueve">
+    </div>
+
+
+    <div class="caja largo">
+        <img src="{% static 'img/rescatados/Chocolate_tn.jpg' %}" alt="Nueve">
+        <img src="{% static 'img/rescatados/Pexel_tn.jpg' %}" alt="Nueve">
+    </div>
+
+
+    <div class="caja">
+        <img src="{% static 'img/rescatados/Bigotes_tn.jpg' %}" alt="Nueve" style="height:62%">
+        <img src="{% static 'img/rescatados/Luna_tn.jpg' %}" alt="Nueve">
+    </div>
+
+</div>
+{% endblock %}

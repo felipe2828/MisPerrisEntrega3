@@ -1,0 +1,37 @@
+{% extends 'maqueta.html' %}
+
+
+{% block nav %}
+{% if user.is_authenticated  %}
+<nav>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="#">Quienes Somos</a>
+        <a href="#">Servicios</a>
+        <a href="{% url 'salir' %}">Cerrar Sesion</a>
+    </nav>
+</nav> 
+{% else %}
+<div>
+    <h1></h1>
+</div>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'gestionUsuario' %}">Contactanos</a>
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+{% block listarapi %}
+
+
+
+<div id="listaMascotas">
+    <h1>Mascotas Rescatadas</h1>
+    
+</div>
+
+{% endblock %}

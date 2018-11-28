@@ -1,0 +1,66 @@
+{% extends "maqueta.html" %}
+
+{% block nav %}
+{% if user.is_authenticated  %}
+<nav>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="#">Quienes Somos</a>
+        <a href="#">Servicios</a>
+        <a href="{% url 'salir' %}">Cerrar Sesion</a>
+    </nav>
+</nav> 
+{% else %}
+<div>
+    <h1></h1>
+</div>
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Servicios</a>
+    <a href="{% url 'gestionUsuario' %}">Contactanos</a>
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+
+{% block lista %}   
+<div class="lista">
+    <h1>Lista de mascotas rescatadas</h1>
+
+    {% if mascota %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Nombre</td>
+                <td>Raza</td>
+                <td>Descripción</td>
+                <td>Estado</td>
+                <td>Imagen</td>
+                <td>Acción</td>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for m in mascota %}
+        <tr>    
+            <td>{{ m.codigoMascota }}</td>
+            <td>{{ m.nombreMascota }} </td>
+            <td>{{ m.razaMascota }} </td>
+            <td>{{ m.descripcionMascota }} </td>
+            <td>{{ m.estadoMascota }}</td>
+            <td class="foto"><img src="{{m.fotoMascota.url}}" width="150px" height="150px"></td>
+            <td> <a href = "{% url 'solicitud' pk=m.codigoMascota %}"> <input type = "submit" value = "Seleccionar mascota"></a> 
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <h2>No hay Mascotas </h2>
+    {% endif %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock%}

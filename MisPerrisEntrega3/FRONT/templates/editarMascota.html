@@ -1,0 +1,23 @@
+{% extends "maqueta.html" %}
+
+{% block nav %}
+{% if user.is_authenticated and user.is_superuser %}
+<nav>
+    <a href="{% url 'inicio' %}">Inicio</a> 
+    <a href="{% url 'gestionMascota' %}">Gestionar Mascotas</a> 
+    <a href="{% url 'salir' %}">Cerrar Sesion</a>
+</nav> 
+{% endif %}
+{% endblock %}
+
+
+{% block formulario %}
+<h2>Datos de rescatado</h2>
+<form class="formulario" method="post" enctype="multipart/form-data" action="">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    <input class="agregar" type="submit" value="Modificar Mascota">
+</form>    
+
+{% endblock %}

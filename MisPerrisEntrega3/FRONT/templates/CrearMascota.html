@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{%block principal%}
+<h1>Formulario de Mascota</h1>
+<form method="POST" enctype="multipart/form-data" id="formulario">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Nombre</td><td><input type="text" id="nombreMascota" required></td>
+            </tr>
+            <tr>
+                <td>Raza</td><td><input type="text" id="razaMascota" required></td>
+            </tr>
+            <tr>
+                <td>Descripcion</td><td><input type="text" id="descripcionMascota" required></td>
+            </tr>
+            <tr>
+                <td>Estado de Mascota</td>
+                <td>
+                <select name="estadoMascota" id="estadoMascota" required>
+                    <option>Disponible</option>
+                    <option>Adoptado</option>
+                    <option>Rescatado</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Foto</td>
+                <td>
+                    <input name="fotoMascota" id="fotoMascota" type="file">
+                </td>
+            </tr>
+            
+        </table>   
+        <input type="submit" id="agregar" value="Agregar">
+</form>
+{% endblock %}
